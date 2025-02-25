@@ -1,60 +1,37 @@
-# Análisis de Datos Socio-Demográficos y Recursos de Salud en EE. UU.
+# Socio-Demographic Data Analysis and Health Resources in the U.S.
 
-Este repositorio contiene un proyecto de análisis de datos que investiga la relación entre los recursos sanitarios y los datos socio-demográficos a nivel de condado en los Estados Unidos (2018-2019).
+This repository contains a data analysis project that investigates the relationship between health resources and socio-demographic data at the county level in the United States (2018-2019).
 
-## Descripción del Proyecto
+## Project Description
 
-El objetivo principal es determinar si existe alguna relación entre los recursos de salud y los factores socio-demográficos de los condados estadounidenses. Para ello, se ha trabajado con un conjunto de datos que incluye diversas variables, tanto demográficas como relacionadas con la salud.
+The main objective is to determine whether there is a relationship between health resources and socio-demographic factors in U.S. counties. To achieve this, a dataset containing various variables—both demographic and health-related—has been utilized.
 
-El flujo del proyecto se estructura en los siguientes pasos:
+The project workflow is structured in the following steps:
 
-1. **Carga de Datos:**  
-   Se utiliza el conjunto de datos `demographic_health_data.csv`, disponible en:  
-   [https://raw.githubusercontent.com/4GeeksAcademy/regularized-linear-regression-project-tutorial/main/demographic_health_data.csv](https://raw.githubusercontent.com/4GeeksAcademy/regularized-linear-regression-project-tutorial/main/demographic_health_data.csv)  
-   Se incluye el código necesario para cargar y leer los datos.
+### Data Loading
+- The dataset used is `demographic_health_data.csv`, available at:  
+  [https://raw.githubusercontent.com/4GeeksAcademy/regularized-linear-regression-project-tutorial/main/demographic_health_data.csv](https://raw.githubusercontent.com/4GeeksAcademy/regularized-linear-regression-project-tutorial/main/demographic_health_data.csv)
+- The necessary code to load and read the data is included.
 
-2. **Análisis Exploratorio de Datos (EDA):**  
-   Se realiza un análisis exploratorio completo para identificar las variables relevantes y descartar aquellas que no aportan información. Se aplican técnicas de limpieza de datos y visualización, además de una adecuada división del conjunto de datos en train y test.
+### Exploratory Data Analysis (EDA)
+- A comprehensive exploratory data analysis is performed to identify relevant variables and discard those that do not provide useful information.
+- Data cleaning and visualization techniques are applied, along with an appropriate train-test split of the dataset.
 
-3. **Construcción del Modelo de Regresión:**  
-   - Se implementa inicialmente un modelo de regresión lineal.
-   - A continuación, se construye un modelo Lasso usando los mismos datos y atributos por defecto.
-   - Se comparan los resultados de ambos modelos, haciendo especial énfasis en la evolución del coeficiente R² a medida que se modifica el hiperparámetro de Lasso (probando valores de 0.0 hasta 20).
+### Regression Model Construction
+- A linear regression model is implemented initially.
+- Subsequently, a Lasso model is built using the same data and default attributes.
+- The results of both models are compared, with special emphasis on how the R² coefficient evolves as the Lasso hyperparameter changes (testing values from 0.0 up to 20).
 
-4. **Optimización del Modelo:**  
-   Si los resultados del modelo Lasso no son satisfactorios, se aplican técnicas de optimización vistas en el curso para mejorar el rendimiento del modelo.
+### Model Optimization
+- If the results of the Lasso model are not satisfactory, optimization techniques covered in the course are applied to improve the model’s performance.
 
-## Requisitos Previos
+## Prerequisites
 
-- **Python:** 3.11 o superior.
-- **Pip:** Para la instalación de paquetes.
+- **Python:** 3.11 or higher.
+- **Pip:** For installing packages.
 
-## Instalación
+## Installation
 
-1. Clona el repositorio en tu máquina local:
+1. **Clone the repository** to your local machine:
    ```bash
-   git clone <URL-del-repositorio>
-2. Navega al directorio del proyecto
-   bash
-   cd <nombre-del-directorio-del-proyecto>
-
-3. Instala los paquetes necesarios
-   bash
-   pip install -r requirements.txt
-
-4. Uso
-   
- Abre el Notebook incluido en el repositorio para visualizar el análisis completo y el desarrollo de los modelos:
- El Notebook contiene secciones para cargar datos, realizar el EDA, entrenar y evaluar los modelos de regresión.
- Sigue las instrucciones y ejecuta las celdas paso a paso para replicar el análisis.
-   
-  
-  Contribuciones
-  Si deseas contribuir a este proyecto, por favor, haz un fork del repositorio y envía un pull request con tus mejoras.
-
-  Licencia
-  Este proyecto se distribuye bajo la Licencia MIT.
-
-
-
-   
+   git clone <repository-URL>
