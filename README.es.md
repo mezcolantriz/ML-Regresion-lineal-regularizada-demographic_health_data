@@ -1,88 +1,60 @@
-# Plantilla de Proyecto de Ciencia de Datos
+# Análisis de Datos Socio-Demográficos y Recursos de Salud en EE. UU.
 
-Esta plantilla está diseñada para impulsar proyectos de ciencia de datos proporcionando una configuración básica para conexiones de base de datos, procesamiento de datos, y desarrollo de modelos de aprendizaje automático. Incluye una organización estructurada de carpetas para tus conjuntos de datos y un conjunto de paquetes de Python predefinidos necesarios para la mayoría de las tareas de ciencia de datos.
+Este repositorio contiene un proyecto de análisis de datos que investiga la relación entre los recursos sanitarios y los datos socio-demográficos a nivel de condado en los Estados Unidos (2018-2019).
 
-## Estructura
+## Descripción del Proyecto
 
-El proyecto está organizado de la siguiente manera:
+El objetivo principal es determinar si existe alguna relación entre los recursos de salud y los factores socio-demográficos de los condados estadounidenses. Para ello, se ha trabajado con un conjunto de datos que incluye diversas variables, tanto demográficas como relacionadas con la salud.
 
-- `app.py` - El script principal de Python que ejecutas para tu proyecto.
-- `explore.py` - Un notebook para que puedas hacer tus exploraciones, idealmente el codigo de este notebook se migra hacia app.py para subir a produccion.
-- `utils.py` - Este archivo contiene código de utilidad para operaciones como conexiones de base de datos.
-- `requirements.txt` - Este archivo contiene la lista de paquetes de Python necesarios.
-- `models/` - Este directorio debería contener tus clases de modelos SQLAlchemy.
-- `data/` - Este directorio contiene los siguientes subdirectorios:
-  - `interim/` - Para datos intermedios que han sido transformados.
-  - `processed/` - Para los datos finales a utilizar para el modelado.
-  - `raw/` - Para datos brutos sin ningún procesamiento.
+El flujo del proyecto se estructura en los siguientes pasos:
 
-## Configuración
+1. **Carga de Datos:**  
+   Se utiliza el conjunto de datos `demographic_health_data.csv`, disponible en:  
+   [https://raw.githubusercontent.com/4GeeksAcademy/regularized-linear-regression-project-tutorial/main/demographic_health_data.csv](https://raw.githubusercontent.com/4GeeksAcademy/regularized-linear-regression-project-tutorial/main/demographic_health_data.csv)  
+   Se incluye el código necesario para cargar y leer los datos.
 
-**Prerrequisitos**
+2. **Análisis Exploratorio de Datos (EDA):**  
+   Se realiza un análisis exploratorio completo para identificar las variables relevantes y descartar aquellas que no aportan información. Se aplican técnicas de limpieza de datos y visualización, además de una adecuada división del conjunto de datos en train y test.
 
-Asegúrate de tener Python 3.11+ instalado en tu máquina. También necesitarás pip para instalar los paquetes de Python.
+3. **Construcción del Modelo de Regresión:**  
+   - Se implementa inicialmente un modelo de regresión lineal.
+   - A continuación, se construye un modelo Lasso usando los mismos datos y atributos por defecto.
+   - Se comparan los resultados de ambos modelos, haciendo especial énfasis en la evolución del coeficiente R² a medida que se modifica el hiperparámetro de Lasso (probando valores de 0.0 hasta 20).
 
-**Instalación**
+4. **Optimización del Modelo:**  
+   Si los resultados del modelo Lasso no son satisfactorios, se aplican técnicas de optimización vistas en el curso para mejorar el rendimiento del modelo.
 
-Clona el repositorio del proyecto en tu máquina local.
+## Requisitos Previos
 
-Navega hasta el directorio del proyecto e instala los paquetes de Python requeridos:
+- **Python:** 3.11 o superior.
+- **Pip:** Para la instalación de paquetes.
 
-```bash
-pip install -r requirements.txt
-```
+## Instalación
 
-**Crear una base de datos (si es necesario)**
+1. Clona el repositorio en tu máquina local:
+   ```bash
+   git clone <URL-del-repositorio>
+2. Navega al directorio del proyecto
+   bash
+   cd <nombre-del-directorio-del-proyecto>
 
-Crea una nueva base de datos dentro del motor Postgres personalizando y ejecutando el siguiente comando: `$ createdb -h localhost -U <username> <db_name>`
-Conéctate al motor Postgres para usar tu base de datos, manipular tablas y datos: `$ psql -h localhost -U <username> <db_name>`
-NOTA: Recuerda revisar la información del archivo ./.env para obtener el nombre de usuario y db_name.
+3. Instala los paquetes necesarios
+   bash
+   pip install -r requirements.txt
 
-¡Una vez que estés dentro de PSQL podrás crear tablas, hacer consultas, insertar, actualizar o eliminar datos y mucho más!
+4. Uso
+   
+ Abre el Notebook incluido en el repositorio para visualizar el análisis completo y el desarrollo de los modelos:
+ El Notebook contiene secciones para cargar datos, realizar el EDA, entrenar y evaluar los modelos de regresión.
+ Sigue las instrucciones y ejecuta las celdas paso a paso para replicar el análisis.
+   
+  
+## Contribuciones
+  Si deseas contribuir a este proyecto, por favor, haz un fork del repositorio y envía un pull request con tus mejoras.
 
-**Variables de entorno**
+## Licencia
+  Este proyecto se distribuye bajo la Licencia MIT.
 
-Crea un archivo .env en el directorio raíz del proyecto para almacenar tus variables de entorno, como tu cadena de conexión a la base de datos:
 
-```makefile
-DATABASE_URL="your_database_connection_url_here"
-```
 
-## Ejecutando la Aplicación
-
-Para ejecutar la aplicación, ejecuta el script app.py desde la raíz del directorio del proyecto:
-
-```bash
-python app.py
-```
-
-## Añadiendo Modelos
-
-Para añadir clases de modelos SQLAlchemy, crea nuevos archivos de script de Python dentro del directorio models/. Estas clases deben ser definidas de acuerdo a tu esquema de base de datos.
-
-Definición del modelo de ejemplo (`models/example_model.py`):
-
-```py
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    __tablename__ = 'example_table'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-```
-
-## Trabajando con Datos
-
-Puedes colocar tus conjuntos de datos brutos en el directorio data/raw, conjuntos de datos intermedios en data/interim, y los conjuntos de datos procesados listos para el análisis en data/processed.
-
-Para procesar datos, puedes modificar el script app.py para incluir tus pasos de procesamiento de datos, utilizando pandas para la manipulación y análisis de datos.
-
-## Contribuyentes
-
-Esta plantilla fue construida como parte del [Data Science and Machine Learning Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning) de 4Geeks Academy por [Alejandro Sanchez](https://twitter.com/alesanchezr) y muchos otros contribuyentes. Descubre más sobre [los programas BootCamp de 4Geeks Academy](https://4geeksacademy.com/us/programs) aquí.
-
-Otras plantillas y recursos como este se pueden encontrar en la página de GitHub de la escuela.
+   
