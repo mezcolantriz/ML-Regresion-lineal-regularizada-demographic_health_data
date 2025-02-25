@@ -1,100 +1,60 @@
-Datos socio demográficos y de recursos de salud a nivel de condado de EE. UU. (2018-2019)
-Se han recopilado datos socio demográficos y de recursos de salud por condado en los Estados Unidos y queremos descubrir si existe alguna relación entre los recursos sanitarios y los datos socio demográficos.
+# Análisis de Datos Socio-Demográficos y Recursos de Salud en EE. UU.
 
-Para ello, es necesario que establezcas una variable objetivo (relacionada con la salud) para llevar a cabo el análisis.
+Este repositorio contiene un proyecto de análisis de datos que investiga la relación entre los recursos sanitarios y los datos socio-demográficos a nivel de condado en los Estados Unidos (2018-2019).
 
-Paso 1: Carga del conjunto de datos a tu modelo
-El conjunto de datos se puede encontrar en esta carpeta de proyecto bajo el nombre demographic_health_data.csv. Puedes cargarlo en el código directamente desde el siguiente enlace:
+## Descripción del Proyecto
 
-https://raw.githubusercontent.com/4GeeksAcademy/regularized-linear-regression-project-tutorial/main/demographic_health_data.csv
-O descargarlo y añadirlo a mano en tu repositorio. En este conjunto de datos encontrarás una gran cantidad de variables, que encontrarás definidas aquí.
+El objetivo principal es determinar si existe alguna relación entre los recursos de salud y los factores socio-demográficos de los condados estadounidenses. Para ello, se ha trabajado con un conjunto de datos que incluye diversas variables, tanto demográficas como relacionadas con la salud.
 
-Paso 2: Realiza un EDA completo
-Este segundo paso es vital para asegurar que nos quedamos con las variables estrictamente necesarias y eliminamos las que no son relevantes o no aportan información. Utiliza el Notebook de ejemplo que trabajamos y adáptalo a este caso de uso.
+El flujo del proyecto se estructura en los siguientes pasos:
 
-Asegúrate de dividir convenientemente el conjunto de datos en train y test como hemos visto en lecciones anteriores.
+1. **Carga de Datos:**  
+   Se utiliza el conjunto de datos `demographic_health_data.csv`, disponible en:  
+   [https://raw.githubusercontent.com/4GeeksAcademy/regularized-linear-regression-project-tutorial/main/demographic_health_data.csv](https://raw.githubusercontent.com/4GeeksAcademy/regularized-linear-regression-project-tutorial/main/demographic_health_data.csv)  
+   Se incluye el código necesario para cargar y leer los datos.
 
-Paso 3: Construye un modelo de regresión
-Comienza a resolver el problema implementando un modelo de regresión lineal y analiza los resultados. A continuación, utilizando los mismos datos y los atributos por defecto, construye un modelo Lasso y compara los resultados con la regresión lineal base.
+2. **Análisis Exploratorio de Datos (EDA):**  
+   Se realiza un análisis exploratorio completo para identificar las variables relevantes y descartar aquellas que no aportan información. Se aplican técnicas de limpieza de datos y visualización, además de una adecuada división del conjunto de datos en train y test.
 
-Analiza cómo evoluciona el 
-R
-2
-R 
-2
- 
- cuando el hiperparámetro del modelo Lasso cambia (puedes por ejemplo empezar a probar desde el valor 0.0 e ir aumentándolo hasta un valor de 20). Dibuja estos valores en un diagrama de líneas.
+3. **Construcción del Modelo de Regresión:**  
+   - Se implementa inicialmente un modelo de regresión lineal.
+   - A continuación, se construye un modelo Lasso usando los mismos datos y atributos por defecto.
+   - Se comparan los resultados de ambos modelos, haciendo especial énfasis en la evolución del coeficiente R² a medida que se modifica el hiperparámetro de Lasso (probando valores de 0.0 hasta 20).
 
-Paso 4: Optimiza el modelo de regresion anterior
-Después de entrenar el modelo Lasso, si los resultados no son satisfactorios, optimízalo empleando alguna de las técnicas vistas anteriormente.
-    
-## Setup
+4. **Optimización del Modelo:**  
+   Si los resultados del modelo Lasso no son satisfactorios, se aplican técnicas de optimización vistas en el curso para mejorar el rendimiento del modelo.
 
-**Prerequisites**
+## Requisitos Previos
 
-Make sure you have Python 3.11+ installed on your. You will also need pip for installing the Python packages.
+- **Python:** 3.11 o superior.
+- **Pip:** Para la instalación de paquetes.
 
-**Installation**
+## Instalación
 
-Clone the project repository to your local machine.
+1. Clona el repositorio en tu máquina local:
+   ```bash
+   git clone <URL-del-repositorio>
+2. Navega al directorio del proyecto
+   bash
+   cd <nombre-del-directorio-del-proyecto>
 
-Navigate to the project directory and install the required Python packages:
+3. Instala los paquetes necesarios
+   bash
+   pip install -r requirements.txt
 
-```bash
-pip install -r requirements.txt
-```
+4. Uso
+   
+ Abre el Notebook incluido en el repositorio para visualizar el análisis completo y el desarrollo de los modelos:
+ El Notebook contiene secciones para cargar datos, realizar el EDA, entrenar y evaluar los modelos de regresión.
+ Sigue las instrucciones y ejecuta las celdas paso a paso para replicar el análisis.
+   
+  
+  Contribuciones
+  Si deseas contribuir a este proyecto, por favor, haz un fork del repositorio y envía un pull request con tus mejoras.
 
-**Create a database (if needed)**
+  Licencia
+  Este proyecto se distribuye bajo la Licencia MIT.
 
-Create a new database within the Postgres engine by customizing and executing the following command: `$ createdb -h localhost -U <username> <db_name>`
-Connect to the Postgres engine to use your database, manipulate tables and data: `$ psql -h localhost -U <username> <db_name>`
-NOTE: Remember to check the ./.env file information to get the username and db_name.
 
-Once you are inside PSQL you will be able to create tables, make queries, insert, update or delete data and much more!
 
-**Environment Variables**
-
-Create a .env file in the project root directory to store your environment variables, such as your database connection string:
-
-```makefile
-DATABASE_URL="your_database_connection_url_here"
-```
-
-## Running the Application
-
-To run the application, execute the app.py script from the root of the project directory:
-
-```bash
-python app.py
-```
-
-## Adding Models
-
-To add SQLAlchemy model classes, create new Python script files inside the models/ directory. These classes should be defined according to your database schema.
-
-Example model definition (`models/example_model.py`):
-
-```py
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
-
-Base = declarative_base()
-
-class ExampleModel(Base):
-    __tablename__ = 'example_table'
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-
-```
-
-## Working with Data
-
-You can place your raw datasets in the data/raw directory, intermediate datasets in data/interim, and the processed datasets ready for analysis in data/processed.
-
-To process data, you can modify the app.py script to include your data processing steps, utilizing pandas for data manipulation and analysis.
-
-## Contributors
-
-This template was built as part of the 4Geeks Academy [Data Science and Machine Learning Bootcamp](https://4geeksacademy.com/us/coding-bootcamps/datascience-machine-learning) by [Alejandro Sanchez](https://twitter.com/alesanchezr) and many other contributors. Find out more about [4Geeks Academy's BootCamp programs](https://4geeksacademy.com/us/programs) here.
-
-Other templates and resources like this can be found on the school GitHub page.
+   
